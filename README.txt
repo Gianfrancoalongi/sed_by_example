@@ -10,5 +10,6 @@ There is an intended folder order, but no specific intended order within the
 folders. You should go through the folders in the following order
 
 	  sed_scripts
+          substitution
           misc
 
