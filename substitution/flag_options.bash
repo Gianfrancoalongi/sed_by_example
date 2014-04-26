@@ -2,7 +2,7 @@
 
 INPUT="a b c d A B C D a b c d A B C D a b c d A B C D"
 run_with_pattern() {
-    printf "%-23s => " "${1}"
+    printf "%-28s => " "${1}"
     sed "${1}" <<EOF
 ${INPUT}
 EOF
@@ -27,4 +27,8 @@ run_with_pattern 's/A B C D/_ _ _ _/4'
 run_with_pattern 's/a/echo /e'
 
 run_with_pattern 's/a/echo /; s/D/|rev/e3'
+
+echo ''
+run_with_pattern 's/A B C D/_/gw res.txt'
+echo res.txt contains $(< res.txt)
 
