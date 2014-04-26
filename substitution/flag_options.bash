@@ -1,26 +1,26 @@
 #!/bin/bash
 
-sed 's/A B C D/_ _ _ _/' <<EOF
-a b c d A B C D a b c d A B C D a b c d A B C D
+INPUT="a b c d A B C D a b c d A B C D a b c d A B C D"
+run_with_pattern() {
+    printf "%-20s => " "${1}"
+    sed "${1}" <<EOF
+${INPUT}
 EOF
+}
 
-sed 's/A B C D/_ _ _ _/g' <<EOF
-a b c d A B C D a b c d A B C D a b c d A B C D
-EOF
+printf "%58s\n" "${INPUT}"
 
-sed 's/A B C D/_ _ _ _/i' <<EOF
-a b c d A B C D a b c d A B C D a b c d A B C D
-EOF
+run_with_pattern 's/A B C D/_ _ _ _/'
 
-sed 's/A B C D/_ _ _ _/1' <<EOF
-a b c d A B C D a b c d A B C D a b c d A B C D
-EOF
+run_with_pattern 's/A B C D/_ _ _ _/g'
 
-sed 's/A B C D/_ _ _ _/2' <<EOF
-a b c d A B C D a b c d A B C D a b c d A B C D
-EOF
+run_with_pattern 's/A B C D/_ _ _ _/i'
 
-sed 's/A B C D/_ _ _ _/3' <<EOF
-a b c d A B C D a b c d A B C D a b c d A B C D
-EOF
+run_with_pattern 's/A B C D/_ _ _ _/1'
+
+run_with_pattern 's/A B C D/_ _ _ _/2'
+
+run_with_pattern 's/A B C D/_ _ _ _/3'
+
+run_with_pattern 's/A B C D/_ _ _ _/4'
 
