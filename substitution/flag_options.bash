@@ -8,6 +8,13 @@ ${INPUT}
 EOF
 }
 
+with_file() {
+    echo ''
+    ${2} "${3}"
+    echo ${1} contains $(< ${1})
+    rm ${1}
+}
+
 printf "%58s\n" "${INPUT}"
 
 run_with_pattern 's/A B C D/_ _ _ _/'
@@ -28,7 +35,5 @@ run_with_pattern 's/a/echo /e'
 
 run_with_pattern 's/a/echo /; s/D/|rev/e3'
 
-echo ''
-run_with_pattern 's/A B C D/_/gw res.txt'
-echo res.txt contains $(< res.txt)
+with_file res.txt run_with_pattern 's/A B C D/_/gw res.txt'
 
